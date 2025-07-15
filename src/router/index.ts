@@ -1,34 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TodoList from '../views/todo-lists.vue'
-import TRAINEE from '../views/trainee-info.vue'
+import toDoLists from '@/views/todo-lists.vue'
+import trainee from '@/views/trainee-info.vue'
+import {RouteNames} from '@/enum/route-name'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  
   routes: [
     {
-      path: '/TODOLISTS',
-      name: 'TODOLISTS',
-      component: TodoList,
+      path: '/',
+      name: RouteNames.TODOLISTS,
+      component: toDoLists,
     },
 
     {
       path: '/TRAINEE',
-      name: 'TRAINEE',
-      component: TRAINEE,
+      name: RouteNames.TRAINEE,
+      component: trainee,
     }
-  //   {
-  //     path: '/about',
-  //     name: 'about',
-  //     // route level code-splitting
-  //     // this generates a separate chunk (About.[hash].js) for this route
-  //     // which is lazy-loaded when the route is visited.
-  //     component: () => import('../views/AboutView.vue'),
-  // //   },
-  // //       {
-  // //     path: '/',
-  // //     name: 'HomeView',
-  // //     component: HomeView,
-  // //   },
   ],
 })
 

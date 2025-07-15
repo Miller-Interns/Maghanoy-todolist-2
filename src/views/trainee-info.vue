@@ -13,13 +13,16 @@
   </div>
 </template>
 
-<script>
+<script lang ='ts'>
+import router from '@/router';
+import {RouteNames} from '@/enum/route-name'
+
 export default {
-  name: "WelcomePage", // It's good practice to name your component
+  name: "WelcomePage",
   methods: {
     goToApp() {
       // Use the router instance to push to the new route
-      this.$router.push('/todoLists');
+      router.push({name: RouteNames.TODOLISTS});
     }
   }
 }
@@ -42,8 +45,8 @@ export default {
   background-color: #4CAF50;
   color: white;
   text-align: center;
-  text-decoration: none; /* Not strictly needed for a button, but doesn't harm */
-  font-family: inherit; /* Ensures the button uses the same font as the rest of the page */
+  text-decoration: none;
+  font-family: inherit;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
