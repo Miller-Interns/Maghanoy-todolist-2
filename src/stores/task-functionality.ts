@@ -1,4 +1,4 @@
-import { ref, computed, watch, onMounted} from 'vue'
+import { ref,watch} from 'vue'
 import { defineStore } from 'pinia'
 import {type Task} from '@/interface/todo-types'
 export const useTaskStore = defineStore('tasks', () => {
@@ -10,16 +10,6 @@ export const useTaskStore = defineStore('tasks', () => {
     const savedTasks = localStorage.getItem('taskList');
     if (savedTasks) {
       const tasks: Task[]= JSON.parse(savedTasks);
-    
-       // Data Migration: If an old version of the data is found (items are strings)
-      if (tasks.length > 0 && tasks[0].items.length > 0 && typeof tasks[0].items[0] === 'string') {
-        tasks.forEach(task => {
-
-          if (typeof task.done === 'undefined') {
-            task.done = false;
-          }
-        });
-      }
       taskList.value = tasks;
     }
   };
@@ -64,7 +54,7 @@ export const useTaskStore = defineStore('tasks', () => {
   };
 
 
-    //NEW: Toggles the 'done' state of an entire task category.
+ //  Toggles the 'done' state of an entire task category.
   
   const toggleTaskDone = (taskId: number) => {
     const task = taskList.value.find(t => t.id === taskId);
@@ -74,7 +64,7 @@ export const useTaskStore = defineStore('tasks', () => {
   };
 
   
-  //NEW: Toggles the 'done' state of a single item within a task.
+  //Toggles the 'done' state of a single item within a task.
   
   const toggleItemDone = (taskId: number, itemIndex: number) => {
     const task = taskList.value.find(t => t.id === taskId);

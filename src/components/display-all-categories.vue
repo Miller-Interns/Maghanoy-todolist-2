@@ -9,8 +9,8 @@ import editIcon from '@/icons/edit-icon.vue';
 import deleteIcon from '@/icons/delete-icon.vue';
 
 
-const editingTaskId = ref<number | null>(null);
-const editableTask = reactive<Task>({ id: 0, title: '', items: [], done: false });
+const editingTaskId = ref<number | null>(null);// pointer
+const editableTask = reactive<Task>({ id: 0, title: '', items: [], done: false });//temporary copy for editing specific task category
 const showPerCategory = ref(false);
 const taskStore = useTaskStore();
 const { taskList } = storeToRefs(taskStore);
@@ -48,6 +48,8 @@ const addNewItemInEditMode = () => {
 
 </script>
 <template>
+        <!--place editing view inside the loop to place the editing form in the exact same spot as the item being 
+        displayed and render all blocks-->
         <div v-for='task in taskList' :key='task.id' class='categoryPreview' :class="{ 'task-done': task.done }">
 
           <!-- Editing View -->
